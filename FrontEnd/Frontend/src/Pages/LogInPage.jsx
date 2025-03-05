@@ -6,12 +6,11 @@ import {
   EyeSlashIcon,
   EyeIcon,
   ChatBubbleLeftRightIcon,
+  ArrowPathIcon,
 } from "@heroicons/react/24/outline";
 import { useAuth } from "../hooks/useAuth";
 import { AuthImagePattern } from "../components/AuthImagePattern";
 import { Link } from "react-router-dom";
-import { ArrowPathIcon, UserCircleIcon } from "@heroicons/react/24/solid";
-
 const LogInPage = () => {
   const [showPassword, setshowPassword] = useState(false);
   const [formData, setformData] = useState({
@@ -85,17 +84,16 @@ const LogInPage = () => {
                 <button
                   type="submit"
                   className="flex items-center justify-center w-full bg-linear-to-r to-blue-500 from-blue-700 hover:to-blue-600 text-white rounded-full text-2xl py-1 cursor-pointer"
-                
                   disabled={isLoggingIn}
-                              >
-                                {isLoggingIn ? (
-                                  <> 
-                                    <ArrowPathIcon className="animate-spin w-9 h-9 text-gray-400" />
-                                    Loading
-                                  </>
-                                ) : (
-                                  "Log In"
-                                )}
+                >
+                  {isLoggingIn ? (
+                    <>
+                      <ArrowPathIcon className="animate-spin w-9 h-9 text-gray-400" />
+                      Loading
+                    </>
+                  ) : (
+                    "Log In"
+                  )}
                 </button>
               </form>
 

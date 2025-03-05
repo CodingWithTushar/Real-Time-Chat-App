@@ -9,19 +9,16 @@ import MessageRouter from "./routes/message.route.js";
 dotenv.config();
 
 const app = express();
-app.use(express.json());
-app.use(cors(
-  {origin: "http://localhost:5173",
-  credentials: true}
-));
-app.use(cookieParser())
+app.use(express.json({ limit: "200mb" }));
+app.use(cors({ origin: "http://localhost:5173", credentials: true }));
+app.use(cookieParser());
 
-const port  = process.env.PORT
+const port = process.env.PORT;
 
 app.use("/api/auth", AuthRouter);
 app.use("/api/message", MessageRouter);
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
-  Connectdb()
+  Connectdb();
 });

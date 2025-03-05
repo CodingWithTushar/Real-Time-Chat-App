@@ -4,7 +4,10 @@ import {
   ChatBubbleLeftRightIcon,
   UserCircleIcon,
 } from "@heroicons/react/24/outline";
-import { ArrowLeftStartOnRectangleIcon, CogIcon } from "@heroicons/react/24/solid";
+import {
+  ArrowLeftStartOnRectangleIcon,
+  CogIcon,
+} from "@heroicons/react/24/solid";
 import { Link } from "react-router-dom";
 
 const NavBar = () => {
@@ -19,26 +22,29 @@ const NavBar = () => {
           </div>
           <div className="flex items-center justify-center gap-4">
             <div className="flex items-center justify-center hover:text-gray-500">
-            <CogIcon className="w-10 h-10 cursor-pointer  " />
-            <button className="hidden sm:inline font-semibold text-lg">
-              <Link to="/setting" >
-            Settings
-              </Link>
-            </button>
+                <Link to="/setting" className="flex items-center justify-center">
+              <CogIcon className="w-10 h-10 cursor-pointer  " />
+              <button className="hidden sm:inline font-semibold text-lg">
+                Settings
+              </button>
+                </Link>
             </div>
             <div className="flex items-center justify-center hover:text-gray-500">
-            <UserCircleIcon className="w-10 h-10 cursor-pointer  " />
-            <button className="font-semibold text-lg">
-              <Link to="/profile" >
-            Profile
+              <Link to="/profile" className="flex">
+                <UserCircleIcon className="w-10 h-10 cursor-pointer " />
+                <button className="font-semibold text-lg hidden sm:inline">
+                  Profile
+                </button>
               </Link>
-            </button>
             </div>
             <div className="flex items-center justify-center hover:text-gray-500">
-            <ArrowLeftStartOnRectangleIcon className="w-10 h-10 cursor-pointer  " />
-            <button className="font-semibold text-lg" onClick={logout}>
-            Logout
-            </button>
+              <ArrowLeftStartOnRectangleIcon className="w-10 h-10 cursor-pointer  " />
+              <button
+                className="font-semibold text-lg hidden sm:inline"
+                onClick={logout}
+              >
+                Logout
+              </button>
             </div>
           </div>
         </div>

@@ -1,8 +1,8 @@
-export function Input({label , Icons , type , value , OnChange , placeholder}) {
+export function Input({ label, Icons, type, value, OnChange, placeholder }) {
   return (
     <>
       <label className="my-2">{label}</label>
-      <div className="flex items-center justify-center rounded gap-3 mb-5 border border-gray-300 hover:ring-2 hover:ring-blue-400 p-1">
+      <div className="flex items-center justify-center rounded gap-3 mb-4 border border-gray-300 hover:ring-2 hover:ring-blue-400 p-1">
         {Icons}
         <input
           required

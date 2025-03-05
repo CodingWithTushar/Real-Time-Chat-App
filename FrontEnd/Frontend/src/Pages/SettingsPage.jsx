@@ -2,7 +2,10 @@ import React from 'react'
 
 const SettingsPage = () => {
   return (
-    <div>SettingsPage</div>
+    <div className='h-screen flex items-center justify-center'>
+      <h1>Theme</h1>
+      <p>Choose a theme for your  that interface</p>
+    </div>
   )
 }
 

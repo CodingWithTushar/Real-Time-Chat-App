@@ -37,7 +37,7 @@ export const useAuth = create((set) => ({
     }
   },
 
-  logout: async (data) => {
+  logout: async () => {
     try {
       await axiosInstanace.post("/auth/logout");
       set({ authUser: null });
@@ -48,15 +48,25 @@ export const useAuth = create((set) => ({
     }
   },
   login: async (data) => {
-    set({isLoggingIn: true})
+    set({ isLoggingIn: true });
     try {
-      const response = await axiosInstanace.post("/auth/login" , data)
-      set({authUser: response.data})
-      toast.success("Logged in successfully")
-      
+      const response = await axiosInstanace.post("/auth/login", data);
+      set({ authUser: response.data });
+      toast.success("Logged in successfully");
     } catch (e) {
-      toast.error(`Error Happened In Log In ${e}`)
-      console.error
+      toast.error(`Error Happened In Log In ${e}`);
+      console.error;
     }
-  }
+  },
+  updateProfile: async (data) => {
+    set({ isUpdatingProfile: true });
+    try {
+      const response = await axiosInstanace.put("auth/update-profile", data);
+      set({ authUser: response.data });
+      toast.success(`Profile updated successfully`);
+    } catch (e) {
+      toast.error(`Error Happened in Updating Profile ${e}`);
+    } finally {
+    }
+  },
 }));
