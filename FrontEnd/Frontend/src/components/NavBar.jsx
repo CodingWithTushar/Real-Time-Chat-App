@@ -16,31 +16,33 @@ const NavBar = () => {
   return (
     <>
       <header className="border-b border-gray-300 fixed w-full top-0 h-13  backdrop-blur-lg ">
-        <div className="flex items-center justify-around">
-          <div className="">
-            <ChatBubbleLeftRightIcon className="w-12 h-12 cursor-pointer hover:text-gray-500" />
+        <div className="flex items-center justify-around ">
+          <Link to={"/"}>
+          <div className="" >
+            <ChatBubbleLeftRightIcon className="w-12 h-12 cursor-pointer hover:text-gray-500 " />
           </div>
-          <div className="flex items-center justify-center gap-4">
-            <div className="flex items-center justify-center hover:text-gray-500">
+          </Link>
+          <div className="flex items-center justify-center gap-6">
+            <div className="flex items-center justify-center hover:text-gray-500 ">
                 <Link to="/setting" className="flex items-center justify-center">
-              <CogIcon className="w-10 h-10 cursor-pointer  " />
-              <button className="hidden sm:inline font-semibold text-lg">
+              <CogIcon className="w-8 cursor-pointer  " />
+              <button className="hidden sm:inline font-semibold text-lg cursor-pointer">
                 Settings
               </button>
                 </Link>
             </div>
-            <div className="flex items-center justify-center hover:text-gray-500">
+            <div className="flex items-center justify-center hover:text-gray-500 ">
               <Link to="/profile" className="flex">
-                <UserCircleIcon className="w-10 h-10 cursor-pointer " />
-                <button className="font-semibold text-lg hidden sm:inline">
+                <UserCircleIcon className="w-8 cursor-pointer " />
+                <button className="font-semibold text-lg hidden sm:inline cursor-pointer">
                   Profile
                 </button>
               </Link>
             </div>
-            <div className="flex items-center justify-center hover:text-gray-500">
-              <ArrowLeftStartOnRectangleIcon className="w-10 h-10 cursor-pointer  " />
+            <div className="flex items-center justify-center hover:text-gray-500 ">
+              <ArrowLeftStartOnRectangleIcon className="w-8 cursor-pointer  " />
               <button
-                className="font-semibold text-lg hidden sm:inline"
+                className="font-semibold text-lg hidden sm:inline cursor-pointer"
                 onClick={logout}
               >
                 Logout

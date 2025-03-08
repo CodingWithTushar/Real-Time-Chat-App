@@ -7,6 +7,7 @@ export const useAuth = create((set) => ({
   authUser: null,
   isSigingUp: false,
   isLoggingIn: false,
+  onlineUsers: [],
   isUpdatingProfile: false,
   isCheckingAuth: true,
 
