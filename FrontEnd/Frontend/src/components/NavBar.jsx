@@ -11,47 +11,51 @@ import {
 import { Link } from "react-router-dom";
 
 const NavBar = () => {
-  const { logout, authUser } = useAuth();
+  const { logout} = useAuth();
 
   return (
-    <>
-      <header className="border-b border-gray-300 fixed w-full top-0 h-13  backdrop-blur-lg ">
-        <div className="flex items-center justify-around ">
-          <Link to={"/"}>
-          <div className="" >
-            <ChatBubbleLeftRightIcon className="w-12 h-12 cursor-pointer hover:text-gray-500 " />
-          </div>
+    <header className="border-b border-base-300 fixed w-full top-0 h-16 backdrop-blur-lg bg-base-100/80 z-50">
+      <div className="flex items-center justify-between max-w-7xl mx-auto px-4 h-full">
+        {/* Logo Section */}
+        <Link to="/" className="flex items-center gap-2 group">
+          <ChatBubbleLeftRightIcon className="w-8 h-8 text-primary transition-transform group-hover:scale-110" />
+          <span className="text-xl font-bold text-base-content hidden md:inline-block">
+            ChatSphere
+          </span>
+        </Link>
+
+       
+        <div className="flex items-center gap-6">
+          
+          <Link
+            to="/setting"
+            className="flex items-center gap-2 p-2 rounded-lg hover:bg-base-200 transition-all duration-200"
+          >
+            <CogIcon className="w-6 h-6 text-base-content" />
+            <span className="hidden sm:inline font-medium text-base-content">
+              Settings
+            </span>
           </Link>
-          <div className="flex items-center justify-center gap-6">
-            <div className="flex items-center justify-center hover:text-gray-500 ">
-                <Link to="/setting" className="flex items-center justify-center">
-              <CogIcon className="w-8 cursor-pointer  " />
-              <button className="hidden sm:inline font-semibold text-lg cursor-pointer">
-                Settings
-              </button>
-                </Link>
-            </div>
-            <div className="flex items-center justify-center hover:text-gray-500 ">
-              <Link to="/profile" className="flex">
-                <UserCircleIcon className="w-8 cursor-pointer " />
-                <button className="font-semibold text-lg hidden sm:inline cursor-pointer">
-                  Profile
-                </button>
-              </Link>
-            </div>
-            <div className="flex items-center justify-center hover:text-gray-500 ">
-              <ArrowLeftStartOnRectangleIcon className="w-8 cursor-pointer  " />
-              <button
-                className="font-semibold text-lg hidden sm:inline cursor-pointer"
-                onClick={logout}
-              >
-                Logout
-              </button>
-            </div>
-          </div>
+          <Link
+            to="/profile"
+            className="flex items-center gap-2 p-2 rounded-lg hover:bg-base-200 transition-all duration-200"
+          >
+            <UserCircleIcon className="w-6 h-6 text-base-content" />
+            <span className="hidden sm:inline font-medium text-base-content">
+              Profile
+            </span>
+          </Link>
+
+          <button
+            onClick={logout}
+            className="flex items-center gap-2 p-2 rounded-lg hover:bg-error/10 text-error transition-all duration-200 cursor-pointer"
+          >
+            <ArrowLeftStartOnRectangleIcon className="w-6 h-6" />
+            <span className="hidden sm:inline font-medium">Logout</span>
+          </button>
         </div>
-      </header>
-    </>
+      </div>
+    </header>
   );
 };
 

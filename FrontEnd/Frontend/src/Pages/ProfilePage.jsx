@@ -30,7 +30,7 @@ const ProfilePage = () => {
 
   return (
     <>
-      <div className="h-screen flex flex-col items-center justify-center">
+      <div className="h-screen flex flex-col items-center justify-center font-semibold">
         <div className="flex flex-col shadow hover:shadow-2xl p-5 text-md font-semibold w-[400px]">
           <div className="flex flex-col items-center rounded-xl">
             <UserGroupIcon className="w-9 h-9" />

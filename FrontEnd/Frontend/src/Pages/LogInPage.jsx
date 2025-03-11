@@ -27,7 +27,7 @@ const LogInPage = () => {
 
   return (
     <>
-      <div className=" h-screen flex items-center justify-center ">
+      <div className=" h-screen flex items-center justify-center font-semibold">
         <div className="flex rounded border-gray-300 shadow-xl hover:shadow-2xl">
           {/* Left-Side */}
           <div className="flex items-center justify-center font-semibold p-7 sm:p-12 lg:w-[600px] ">
