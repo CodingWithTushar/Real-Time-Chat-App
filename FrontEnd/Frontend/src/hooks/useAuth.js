@@ -1,20 +1,24 @@
 import { create } from "zustand";
 import { axiosInstanace } from "../lib/axios.js";
-import axios from "axios";
+import { io } from "socket.io-client";
 import toast from "react-hot-toast";
 
-export const useAuth = create((set) => ({
+const BASE_URL = "http://localhost:3000";
+
+export const useAuth = create((set, get) => ({
   authUser: null,
   isSigingUp: false,
   isLoggingIn: false,
   onlineUsers: [],
   isUpdatingProfile: false,
   isCheckingAuth: true,
+  socket: null,
 
   checkAuth: async () => {
     try {
       const response = await axiosInstanace.get("/auth/check");
       set({ authUser: response.data });
+      get().connectSocket();
     } catch (e) {
       set({ authUser: null });
       console.error;
@@ -43,6 +47,7 @@ export const useAuth = create((set) => ({
       await axiosInstanace.post("/auth/logout");
       set({ authUser: null });
       toast.success("You have Logged out successfully");
+      get().disconnectSocket();
     } catch (e) {
       console.error;
       toast.error(`Error Happened in Logout ${e}`);
@@ -54,6 +59,8 @@ export const useAuth = create((set) => ({
       const response = await axiosInstanace.post("/auth/login", data);
       set({ authUser: response.data });
       toast.success("Logged in successfully");
+
+      get().connectSocket();
     } catch (e) {
       toast.error(`Error Happened In Log In ${e}`);
       console.error;
@@ -68,6 +75,27 @@ export const useAuth = create((set) => ({
     } catch (e) {
       toast.error(`Error Happened in Updating Profile ${e}`);
     } finally {
+    }
+  },
+  connectSocket: async () => {
+    const { authUser } = get();
+    if (!authUser || get().socket?.connected) return;
+    const socket = io(BASE_URL, {
+      query: {
+        userId: authUser._id,
+      },
+    });
+    socket.connect();
+
+    set({ socket: socket });
+
+    socket.on("getOnlineUsers", (userIds) => {
+      set({onlineUsers : userIds});
+    });
+  },
+  disconnectSocket: async () => {
+    if (get().socket.connected) {
+      get().socket.disconnect();
     }
   },
 }));

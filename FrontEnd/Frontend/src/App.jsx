@@ -11,13 +11,16 @@ import { useEffect } from "react";
 import { Toaster } from "react-hot-toast";
 
 function App() {
-  const { authUser, checkAuth, isCheckingAuth } = useAuth();
+  const { authUser, checkAuth, isCheckingAuth , onlineUsers } = useAuth();
+
+  console.log({onlineUsers})
 
   useEffect(() => {
     checkAuth();
   }, [checkAuth]);
 
   console.log(authUser);
+
   if (isCheckingAuth && !authUser) {
     return (
       <div

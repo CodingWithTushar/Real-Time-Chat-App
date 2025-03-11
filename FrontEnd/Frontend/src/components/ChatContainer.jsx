@@ -4,14 +4,24 @@ import { ArrowPathIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import ChatHeader from "./ChatHeader";
 import MessagesInput from "./MessagesInput";
 import { useAuth } from "../hooks/useAuth";
+import { FormatMessageTime } from "../lib/utils";
 
 const ChatContainer = () => {
-  const { messages, getMessages, isMessagesLoading, selectedUser } = useChat();
+  const {
+    messages,
+    getMessages,
+    isMessagesLoading,
+    selectedUser,
+    subscribeToMessages,
+    unsubscribeToMessages,
+  } = useChat();
   const { authUser } = useAuth();
 
   useEffect(() => {
     getMessages(selectedUser._id);
-  }, [selectedUser._id, getMessages]);
+    subscribeToMessages();
+    return () => unsubscribeToMessages();
+  }, [selectedUser._id, getMessages , subscribeToMessages , unsubscribeToMessages]);
 
   if (isMessagesLoading) {
     return (
@@ -49,10 +59,10 @@ const ChatContainer = () => {
               </div>
               <div className="chat-header mb-1">
                 <time className="text-xs  opacity-35 ml-1">
-                  {message.createdAt}
+                  {FormatMessageTime(message.createdAt)}
                 </time>
               </div>
-              <div className="chat-bubble flex items-center ">
+              <div className="chat-bubble flex flex-col gap-3 ">
                 {message.image && (
                   <img
                     src={message.image}
