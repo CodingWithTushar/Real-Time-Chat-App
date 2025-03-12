@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const axiosInstanace = axios.create({
-    baseURL: "http://localhost:3000/api",
+    baseURL: import.meta.env.MODE === "develpoment" ?  "http://localhost:3000/api" : "/api",
     withCredentials: true,
     
 })
