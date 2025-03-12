@@ -1,0 +1,21 @@
+{
+  "name": "real-time-chat-app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm install --prefix BackEnd && npm install --prefix ./FrontEnd/frontend && npm run build --prefix ./FrontEnd/frontend",
+    "start": "npm run start --prefix BackEnd"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CodingWithTushar/Real-Time-Chat-App.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CodingWithTushar/Real-Time-Chat-App/issues"
+  },
+  "homepage": "https://github.com/CodingWithTushar/Real-Time-Chat-App#readme",
+  "description": ""
+}
