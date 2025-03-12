@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { useChat } from "../hooks/useChat";
 import { ArrowPathIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import ChatHeader from "./ChatHeader";
@@ -17,11 +17,21 @@ const ChatContainer = () => {
   } = useChat();
   const { authUser } = useAuth();
 
+  const messageEndRef = useRef(null)
+
   useEffect(() => {
     getMessages(selectedUser._id);
     subscribeToMessages();
     return () => unsubscribeToMessages();
   }, [selectedUser._id, getMessages , subscribeToMessages , unsubscribeToMessages]);
+
+  useEffect(() => {
+    if (messageEndRef.current && messages) {
+      
+      messageEndRef.current.scrollIntoView({behavior: "smooth"})
+    }
+  }, [messages])
+  
 
   if (isMessagesLoading) {
     return (
@@ -44,6 +54,7 @@ const ChatContainer = () => {
               className={`chat ${
                 message.senderId === authUser._id ? "chat-end" : "chat-start"
               }`}
+              ref={messageEndRef}
             >
               <div className="chat-image avatar">
                 <div className="size-10 rounded-full border">
