@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon src/index.js",
-    "prestart": "npm rebuild bcrypt --force",
+    "prestart": "npm rebuild bcrypt --build-from-source --force",
     "start": "npm install --build-from-source && node src/index.js"
   },
   "keywords": [],
